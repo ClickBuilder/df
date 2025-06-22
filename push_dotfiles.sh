@@ -19,8 +19,6 @@ cp ~/setup.sh "$REPO_DIR/"
 
 cd "$REPO_DIR" || exit
 
-echo "Получаем последние изменения с GitHub..."
-git pull --rebase origin main
 
 echo "Добавляем изменения в git..."
 git add .
