@@ -1,16 +1,14 @@
 #!/bin/bash
 
-# Папка, куда ты клонировал репозиторий
 REPO_DIR=~/df
 
-# Убедимся, что она существует
 if [ ! -d "$REPO_DIR" ]; then
-    echo "Ошибка: папка $REPO_DIR не найдена. Убедись, что ты клонировал репозиторий."
+    echo "Ошибка: папка $REPO_DIR не найдена."
     exit 1
 fi
 
-# Копируем файлы и папки в репозиторий
 echo "Копируем файлы..."
+mkdir -p "$REPO_DIR/.config"
 cp -r ~/.config/hypr "$REPO_DIR/.config/"
 cp -r ~/.config/nvim "$REPO_DIR/.config/"
 cp -r ~/.config/waybar "$REPO_DIR/.config/"
@@ -18,18 +16,18 @@ cp -r ~/.config/kitty "$REPO_DIR/.config/"
 cp -r ~/tor-browser "$REPO_DIR/"
 cp -r ~/twitch_demon "$REPO_DIR/"
 cp ~/.bash_profile "$REPO_DIR/"
-cp ~/.bashrc "$REPO_DIR/"
+cp ~/.bashr "$REPO_DIR/"
 cp ~/setup.sh "$REPO_DIR/"
 
-# Переходим в папку репозитория
 cd "$REPO_DIR" || exit
 
-# Добавляем и коммитим
+echo "Получаем последние изменения с GitHub..."
+git pull --rebase origin main
+
 echo "Добавляем изменения в git..."
 git add .
-git commit -m "Обновление dotfiles: $(date +'%Y-%m-%d %H:%M:%S')"
+git commit -m "Обновление dotfiles: $(date +'%Y-%m-%d %H:%M:%S')" || echo "Нет новых изменений."
 
-# Пушим
 echo "Отправляем изменения в репозиторий..."
 git push origin main
 
