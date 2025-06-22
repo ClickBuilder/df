@@ -8,11 +8,10 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 echo "Копируем файлы..."
-mkdir -p "$REPO_DIR/.config"
-cp -r ~/.config/hypr "$REPO_DIR/.config/"
-cp -r ~/.config/nvim "$REPO_DIR/.config/"
-cp -r ~/.config/waybar "$REPO_DIR/.config/"
-cp -r ~/.config/kitty "$REPO_DIR/.config/"
+cp -r ~/.config/hypr "$REPO_DIR/"
+cp -r ~/.config/nvim "$REPO_DIR/"
+cp -r ~/.config/waybar "$REPO_DIR/"
+cp -r ~/.config/kitty "$REPO_DIR/"
 cp -r ~/tor-browser "$REPO_DIR/"
 cp -r ~/twitch_demon "$REPO_DIR/"
 cp ~/.bash_profile "$REPO_DIR/"
